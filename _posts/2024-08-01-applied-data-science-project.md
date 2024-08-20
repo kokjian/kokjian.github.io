@@ -30,24 +30,76 @@ To be able to sustainably identify popular topics among audiences and predict th
 ## Work Accomplished
 This repository details the work accomplished for Business Objective #1, i.e. train a text classification model to predict the sentiment of a movie review, to automate the labelling of the sentiment for new movie reviews on IMDB. 
 
-### Data Preparation
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+The work accomplished for the other business objectives are detailed in the following sites:
 
-### Modelling
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+* [Business Objective #2](https://siewlw.github.io/itd214/2024/08/01/applied-data-science-project.html)
 
-### Evaluation
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+* [Business Objective #3](https://xushengchee.github.io/itd214/2024/08/01/applied-data-science-project.html)
+
+* [Business Objective #4](https://jianweigoh.github.io/itd214/2024/08/01/applied-data-science-project.html)
+
+### Data Understanding
+We began by collecting data from Stanford University's Large Movie Review Dataset, provided in CSV format. This dataset consists of 50,000 movie reviews from IMDb, all of which are complete with no missing data.
+
+![image](https://github.com/user-attachments/assets/a08e296d-a0b4-4755-acbe-39481181a7ad)
+
+### Data Exploration
+During the data exploration, we found that although the dataset has an equal distribution of positive and negative sentiment reviews, there were 824 duplicates and only 49,582 unique reviews. 
+
+![image](https://github.com/user-attachments/assets/46b4f0b9-67ae-43f1-9fb2-eb190527470a)
+
+### Data Cleaning
+To ensure data integrity, we removed all duplicated rows. Then, we confirmed that the distribution of positive and negative sentiments remained evenly balanced after cleaning, which is crucial for training an unbiased model.
+
+![image](https://github.com/user-attachments/assets/5601bbe2-b2cd-4fed-96ef-1b8a0522c405) 
+![image](https://github.com/user-attachments/assets/dfa95a68-a3ce-40d8-b75a-02ed8600f513)
+
+### Data Preparation and Transformation
+In preparing the data, we removed stop words and punctuation, performed lemmatization, and analyzed the frequency of certain words. 
+![image](https://github.com/user-attachments/assets/e5f58ba6-aff5-4799-a89b-ce8b7de2d801)
+![image](https://github.com/user-attachments/assets/97c479e3-790c-427b-87ec-22350377acb5)
+
+We found that the word ‘movie’ appeared way more frequently than other words. So, we excluded the word, as it will not be informative for our analysis.
+![image](https://github.com/user-attachments/assets/c33b17da-33ef-4638-9f47-cad7ccb56396)
+
+To facilitate data modelling for business goal #1, we first converted sentiment labels to binary values – positive as 1 and negative as 0.
+![image](https://github.com/user-attachments/assets/43808e44-c81f-41d6-afe8-7e570f34b049)
+
+### Data Modelling and Training
+Multinominal Naïve Bayes (MNB) is selected for data modelling because it is
+*  computationally efficient in handling large datasets;
+*  performs well in sparse and high-dimensional data (i.e., large number of text data in movie reviews); and
+*  enables additional features to be incorporated to enhance the model performance (i.e., incorporating bi-grams to enhance the model's ability to capture context)
+
+
+We used 80% of the data for training, and 20% of the data for testing.
+![image](https://github.com/user-attachments/assets/ad6fd097-ab21-4c3f-b5a7-85a71f3949e8)
+
+
+### Model Evaluation
+Then, we evaluated the model based on its accuracy, precision and recall values. 
+![image](https://github.com/user-attachments/assets/1861c2f9-55bc-4531-b2f7-6b67d24694b4)
+![image](https://github.com/user-attachments/assets/63438cd2-3547-416e-bf29-6eb23081bd2d)
+![image](https://github.com/user-attachments/assets/7be69512-eddb-469d-a220-5f7a5c36037f)
+*  The model achieved an accuracy of 85.27%, surpassing our success criteria of 80%.
+*  The model also demonstrated high precision and recall (ranging from 0.84 to 0.86), indicating balanced performance across both positive and negative sentiments, without bias to either sentiment.
+
+### Deploying Model on Unseen Data
+To ensure the model's robustness, we deployed it on new movie reviews. 
+![image](https://github.com/user-attachments/assets/16f3d47b-3bd3-4ea3-9bed-0f015942f92f)
+Shown below are 2 examples of the unseen data. 1 negative review on ‘Catwoman 2004’ and 1 positive review on ‘Inside Out 2’. 
+![image](https://github.com/user-attachments/assets/05b532f1-7a68-47fb-a380-ee419f8d8066)
+The model successfully predicted the sentiment of the 'Catwoman (2004)' review as negative and the 'Inside Out 2' review as positive. This reinforces our confidence in its ability to predict the sentiments in new movie reviews accurately.
 
 ## Recommendation and Analysis
-Explain the analysis and recommendations
+Our efforts have successfully met the business goal of automating the classification of movie reviews with an accuracy that exceeds the 80% target. This achievement not only aids in understanding audience sentiment but also supports our larger objective of predicting the success of future films. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+To further improve the model, we recommend incorporating colloquial language stop words (e.g., Singlish) to enhance the model's effectiveness in specific cultural contexts. We also recommend exploring higher-order n-grams (i.e., tri-grams) and performing hyperparameter tuning. Additionally, experimenting with other deep learning architectures (e.g., LSTM or BERT) that may possibly perform better is recommended. 
 
 ## AI Ethics
-Discuss the potential data science ethics issues (privacy, fairness, accuracy, accountability, transparency) in your project. 
+The dataset used does not contain any personal or confidential information and the models' failure to accurately predict the success of movies/shows is not expected to cause societal harm. Nonetheless, a human-in-the-loop approach is recommended in view that there could be additional considerations that may not be fully understood and have not been captured by machine learning. Given the significant investment involved in producing movies and shows, it is more prudent to incorporate insights from other sources and use the model as a tool to support informed decision-making, rather than relying solely on its predictions.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+![image](https://github.com/user-attachments/assets/de4042bf-0a2a-4165-bb34-525a3312009b)
 
 ## Source Codes and Datasets
 Upload your model files and dataset into a GitHub repo and add the link here. 
