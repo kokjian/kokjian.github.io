@@ -4,6 +4,12 @@ title: About
 permalink: /about/
 ---
 
+This project is done for Nanyang Polytechnic - Specialist Diploma in Business & Big Data Analytics, ITD214 Applied Data Science Project module.
+
+The code trains a text classification model to predict the sentiment of a movie review, to automate the labelling of the sentiment for new movie reviews on IMDb.
+
+The code is written and executed in Jupyter Notebook.
+
 This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
 
 You can find the source code for Minima at GitHub:
