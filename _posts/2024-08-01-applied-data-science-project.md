@@ -111,4 +111,5 @@ The dataset used does not contain any personal or confidential information, and 
 ![image](https://github.com/user-attachments/assets/de4042bf-0a2a-4165-bb34-525a3312009b)
 
 ## Source Codes and Datasets
-[https://github.com/kokjian/itd214_project](https://github.com/kokjian/itd214_project)
+[Source Code](https://github.com/kokjian/itd214_project)
+[IMDB Dataset of 50K Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
